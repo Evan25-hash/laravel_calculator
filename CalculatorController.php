@@ -55,6 +55,25 @@ class CalculatorController extends Controller
                 $hasil = 'Operasi tidak valid';
         }
 
+        if ($request->ajax()) {
+            return response()->json([
+                'hasil' => $hasil,
+                'angka1' => $angka1,
+                'angka2' => $angka2,
+                'operasi' => $operasi,
+            ]);
+        }    
+
         return view('calculator', compact('hasil', 'angka1', 'angka2', 'operasi'));
+    }
+
+    public function reset()
+    {
+        return response()->json([
+            'angka1' => '',
+            'angka2' => '',
+            'operasi' => '',
+            'hasil' => null
+        ]);
     }
 }
