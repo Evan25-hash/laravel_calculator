@@ -14,10 +14,10 @@
         @csrf
     
         <label for="angka1" class="form-label fw-bold">Bilangan 1</label>
-        <input type="text" name="angka1" id="angka1" class="form-control mb-3" value="{{ old('angka1', $angka1 ?? '') }}" placeholder="Masukkan Angka" autocomplete="off" required>
+        <input type="number" step = "any" name="angka1" class="form-control mb-3" value="{{ old('angka1', $angka1 ?? '') }}" placeholder="Masukkan Angka" autocomplete="off" required>
     
-        <label for="operasi" class="form-label fw-bold">Operator</label>
-        <select name="operasi" id="operasi" class="form-select mb-3" required>
+        <label for="operasi" class="form-label fw-bold">Operator (+, -, *, /, %, ^)</label>
+        <select name="operasi" class="form-select mb-3" required>
             <option value="" disabled {{ old('operasi', $operasi ?? '') == '' ? 'selected' : '' }}>Pilih operator</option>
             <option value="tambah" {{ old('operasi', $operasi ?? '') == 'tambah' ? 'selected' : '' }}>Tambah (+)</option>
             <option value="kurang" {{ old('operasi', $operasi ?? '') == 'kurang' ? 'selected' : '' }}>Kurang (-)</option>
@@ -26,9 +26,9 @@
             <option value="modulo" {{ old('operasi', $operasi ?? '') == 'modulo' ? 'selected' : '' }}>Modulo (%)</option>
             <option value="pangkat" {{ old('operasi', $operasi ?? '') == 'pangkat' ? 'selected' : '' }}>Pangkat (^)</option>
         </select>
-    
+
         <label for="angka2" class="form-label fw-bold">Bilangan 2</label>
-        <input type="text" name="angka2" id="angka2" class="form-control mb-3" value="{{ old('angka2', $angka2 ?? '') }}" placeholder="Masukkan Angka" autocomplete="off" required>
+        <input type="number" step = "any" name="angka2" class="form-control mb-3" value="{{ old('angka2', $angka2 ?? '') }}" placeholder="Masukkan Angka" autocomplete="off" required>
     
         <button type="submit" class="btn btn-primary">Hitung</button>
         
