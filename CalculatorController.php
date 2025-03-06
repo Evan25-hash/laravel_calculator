@@ -16,12 +16,21 @@ class CalculatorController extends Controller
         $request->validate([
             'angka1' => 'required|numeric',
             'angka2' => 'required|numeric',
-            'operasi' => 'required'
-        ]);
+            'operasi' => 'required|in:tambah,kurang,kali,bagi,modulo,pangkat',
+            ]
+            ,
+            [
+            'angka1.required' => 'Bilangan 1 wajib diisi',
+            'angka1.numeric' => 'Bilangan 1 harus berupa angka',
+            'angka2.required' => 'Bilangan 2 wajib diisi',
+            'angka2.numeric' => 'Bilangan 2 harus berupa angka',
+            'operasi.required' => 'Operator harus diisi',
+            'operasi.in' => 'Operator tidak valid',
+            ]);
 
-        $angka1 = $request->input('angka1');
-        $angka2 = $request->input('angka2');
-        $operasi = $request->input('operasi');
+        $angka1 = $request->angka1;
+        $angka2 = $request->angka2;
+        $operasi = $request->operasi;
 
         switch ($operasi) {
             case 'tambah':
