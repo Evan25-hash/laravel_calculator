@@ -9,7 +9,7 @@
 
 <body class="container mt-5">
 
-    <h1 class="text-center mb-4">Project Calculator</h1>
+    <h1 class="text-center mb-5"><mark>"Project Calculator"</mark></h1>
 
     <form id="calculatorForm" class="p-4 border rounded bg-light">
         @csrf
@@ -18,6 +18,7 @@
         <input type="number" step="any" id="angka1" name="angka1" class="form-control mb-3" placeholder="Masukkan Angka" autocomplete="off" required>
 
         <label for="operasi" class="form-label fw-bold">Operator (+, -, *, /, %, ^)</label>
+        
         <select id="operasi" name="operasi" class="form-select mb-3" required>
             <option value="" disabled selected>Pilih operator</option>
             <option value="tambah">Tambah (+)</option>
@@ -31,11 +32,11 @@
         <label for="angka2" class="form-label fw-bold">Bilangan 2</label>
         <input type="number" step="any" id="angka2" name="angka2" class="form-control mb-3" placeholder="Masukkan Angka" autocomplete="off" required>
 
-        <button type="submit" class="btn btn-primary">Hitung</button>
+        <button type="submit" class="btn btn-primary ">Hitung</button>
         <button type="button" id="btn-reset" class="btn btn-danger ms-2">Reset</button>
     </form>
 
-    <div id="hasil" class="mt-4 p-3 border rounded bg-white" style="display:none;">
+    <div id="hasil" class="mt-4 p-3 border rounded bg-white;">
         <h2 class="fw-bold">Hasil:</h2>
         <p class="fs-4" id="hasilValue"></p>
     </div>
@@ -61,14 +62,10 @@
                     },
                     success: function(response) {
                         $('#hasilValue').text(response.hasil);
-                        $('#hasil').fadeIn();
-                    },
-                    error: function(xhr) {
-                        alert('Terjadi kesalahan: ' + xhr.responseJSON.message);
+                        $('#hasil');
                     }
                 });
             });
-
             $('#btn-reset').click(function() {
                 $.ajax({
                     url: '/reset',
@@ -80,10 +77,7 @@
                         $('#angka1').val('');
                         $('#angka2').val('');
                         $('#operasi').val('');
-                        $('#hasil').fadeOut();
-                    },
-                    error: function() {
-                        alert('Gagal mereset, coba lagi!');
+                        $('#hasilValue').text('');
                     }
                 });
             });
