@@ -35,7 +35,7 @@ class CalculatorController extends Controller
         switch ($operasi) {
             case 'tambah':
                 $hasil = $angka1 + $angka2;
-                break;
+                break; 
             case 'kurang':
                 $hasil = $angka1 - $angka2;
                 break;
@@ -43,13 +43,16 @@ class CalculatorController extends Controller
                 $hasil = $angka1 * $angka2;
                 break;
             case 'bagi':
-                $hasil = $angka2 != 0 ? $angka1 / $angka2 : 'Error: Pembagian oleh nol';
+                $hasil = $angka2 != 0 ? $angka1 / $angka2 : 'Error: pembagian oleh nol';
                 break;
             case 'modulo':
                 $hasil = $angka2 != 0 ? $angka1 % $angka2 : 'Error: Modulo oleh nol';
                 break;
             case 'pangkat':
-                $hasil = pow($angka1, $angka2); 
+                $hasil = pow($angka1, $angka2);
+                if(is_infinite($hasil)){
+                    $hasil = 'Hasil terlalu besar';
+                }
                 break;
             default:
                 $hasil = 'Operasi tidak valid';
@@ -63,8 +66,6 @@ class CalculatorController extends Controller
                 'operasi' => $operasi,
             ]);
         }    
-
-        return view('calculator', compact('hasil', 'angka1', 'angka2', 'operasi'));
     }
 
     public function reset()
